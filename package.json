@@ -1,0 +1,69 @@
+{
+  "name": "pdf-merge-desktop",
+  "version": "1.0.0",
+  "description": "PDF Merge & Compress Desktop App",
+  "main": "main.js",
+  "author": "Sandi",
+  "license": "MIT",
+
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.0.0"
+  },
+
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  },
+
+  "build": {
+    "appId": "com.pdf.merge",
+    "productName": "Pengelolaan File",
+
+    "directories": {
+      "output": "dist"
+    },
+
+    "files": [
+      "**/*",
+      "!node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!node_modules/*.d.ts",
+      "!node_modules/.bin",
+      "!dist"
+    ],
+
+    "asarUnpack": [
+      "utils/**/*"
+    ],
+
+    "extraResources": [
+      {
+        "from": "ghostscript",
+        "to": "ghostscript"
+      },
+      {
+        "from": "resources/libreoffice",
+        "to": "libreoffice",
+        "filter": ["**/*"]
+      }
+    ],
+
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
